@@ -33,11 +33,13 @@ WATER_IN_LITERS = 1000  # Число для перевода мл в литры
 # Подсчет воды: вес * 30 мл
 def water_needed(user_weight):
     """Считает норму воды"""
-    pass
+    water_ml = user_weight * WATER_FOR_1KG
+    water_l = water_ml / WATER_IN_LITERS
+    return water_l
 
 
 # 4. Вывод красивого результата
 print(f"Отчёт для пользователя: {user_name} ({user_age} г.)")
 print(f"Ваш индекс массы тела: {calculate_bmi(user_weight, user_height)}")
-# print(f"Рекомендуемая норма воды: {water_needed} л. в день")
-# print("Расчет окончен. Будьте здоровы!")
+print(f"Рекомендуемая норма воды: {water_needed(user_weight)} л. в день")
+print("Расчет окончен. Будьте здоровы!")
