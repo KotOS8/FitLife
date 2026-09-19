@@ -1,22 +1,36 @@
 # Проект FitLife - MVP версия 1.0
+import sys
 
 
-# 1. Знакомство
 # Просим пользователя ввести свое имя
 user_name = input('Здравствуйте, назовите ваше имя, пожалуйста! ')
 print(f"Приветствую вас, {user_name}")
 
-# Просим пользователя ввести свой возраст
-user_age = int(input('Сколько вам лет? '))
+
+def int_input(question):
+    """Чтение стандартного ввода, возврат int"""
+    try:
+        return int(input(question))
+    except ValueError:
+        print("Ожидалось целое число, программа завершена!")
+        sys.exit()
 
 
-# 2. Сбор данных
-# Просим пользователя ввести вес в кг
-user_weight = float(input('Каков ваш вес (в кг)? '))
+def float_input(question):
+    """Чтение стандартного ввода, возвращает float"""
+    try:
+        return float(input(question))
+    except ValueError:
+        print("Ожидалось число с плавающей точкой, программа завершена!")
+        sys.exit()
 
-# Просим пользователя ввести рост в метрах
-user_height = float(input('Укажите ваш рост (в метрах, пример: 1.75)! '))
-print("Спасибо, идет расчёт данных")
+
+user_age = int_input("Сколько вам лет? ")
+user_weight = float_input('Каков ваш вес (в кг)? ')
+user_height = float_input('Укажите ваш рост (в метрах, пример: 1.75)! ')
+
+WATER_FOR_1KG = 30
+WATER_IN_LITERS = 1000
 
 
 # Рассчет индекса массы тела (ИМТ)
@@ -24,10 +38,6 @@ def calculate_bmi(user_weight, user_height):
     """Считает индекс массы тела"""
     bmi = user_weight / (user_height ** 2)
     return round(bmi, 1)
-
-
-WATER_FOR_1KG = 30  # Количество воды на 1 кг массы тела в мл
-WATER_IN_LITERS = 1000  # Число для перевода мл в литры
 
 
 # Подсчет воды: вес * 30 мл
